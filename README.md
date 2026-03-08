@@ -22,14 +22,19 @@ The plugin provides sensible defaults and supports content management from a cus
 - ACF local field group: `Custom Tabs settings`
 - Global gallery field (`custom_tabs_gallery`) outside tabs
 - Tab repeater field (`custom_tabs_tabs`) with media and text fields
+- Responsive mode switching:
+    - Desktop: accessible ARIA tabs
+    - Mobile (`<=1279px`): synced Slick sliders for tab headers and panels
 - Dynamic asset versioning with `time()` cache-busting
-- Frontend tab behavior handled by lightweight vanilla JS
+- Frontend behavior handled by plugin JS + Slick Carousel
 
 ## Requirements
 
 - WordPress 5.8+
 - PHP 7.4+ (recommended 8.0+)
 - Advanced Custom Fields (ACF) plugin (required for admin editing experience)
+- jQuery (bundled with WordPress)
+- External Slick Carousel assets loaded from jsDelivr CDN
 
 ## Installation
 
@@ -98,6 +103,8 @@ Tabs implement ARIA roles and keyboard interactions:
 
 Implemented in `assets/js/custom-tabs-plugin.js`.
 
+On mobile viewports (`<=1279px`), tabs/panels switch to synced Slick sliders, while desktop keeps ARIA tab semantics.
+
 ## Styling & Fonts
 
 - Typekit import: `https://use.typekit.net/wuz0gtr.css`
@@ -121,9 +128,17 @@ add_filter( 'custom_tabs_plugin_items', function( $tabs ) {
 ## Files
 
 - `custom-tabs-plugin.php` - main plugin class, admin setup, ACF fields, shortcode rendering
-- `assets/js/custom-tabs-plugin.js` - tab interaction logic
+- `assets/js/custom-tabs-plugin.js` - desktop tab logic + mobile Slick sync logic
 - `assets/scss/custom-tabs-plugin.scss` - source styles
 - `assets/css/custom-tabs-plugin.min.css` - deployed frontend styles
+
+## Frontend Markup Notes
+
+Gallery output structure:
+
+- `.ctp__gallery` (container + title)
+- `.ctp__gallery-items` (logos row wrapper)
+- `.ctp__gallery-item` (single logo item)
 
 ## Notes
 

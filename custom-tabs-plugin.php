@@ -584,6 +584,18 @@ final class Custom_Tabs_Plugin {
 						$tab_image_mobile        = isset( $tab['tab_image_mobile'] ) ? (string) $tab['tab_image_mobile'] : '';
 						$tab_cta_url             = isset( $tab['cta_url'] ) ? (string) $tab['cta_url'] : '#';
 						$tab_cta_text            = isset( $tab['cta_text'] ) ? (string) $tab['cta_text'] : '';
+						$left_bg_desktop         = '' !== $tab_image ? $tab_image : $tab_image_mobile;
+						$left_bg_mobile          = '' !== $tab_image_mobile ? $tab_image_mobile : $left_bg_desktop;
+
+						$left_bg_style = '';
+						if ( '' !== $left_bg_desktop ) {
+							$left_bg_style .= '--ctp-bg-desktop: url(' . esc_url( $left_bg_desktop ) . ');';
+							$left_bg_style .= ' background-image: var(--ctp-bg-desktop);';
+						}
+
+						if ( '' !== $left_bg_mobile ) {
+							$left_bg_style .= ' --ctp-bg-mobile: url(' . esc_url( $left_bg_mobile ) . ');';
+						}
 
 						?>
 						<article
@@ -593,7 +605,7 @@ final class Custom_Tabs_Plugin {
 							aria-labelledby="<?php echo esc_attr( $instance_id . '-tab-' . $index ); ?>"
 							<?php echo $index === 0 ? '' : 'hidden'; ?>
 						>
-							<div class="left-side" style="<?php echo isset( $tab_image ) ? 'background-image: url(' . esc_url( $tab_image ) . ');' : ''; ?>">
+							<div class="left-side" style="<?php echo esc_attr( $left_bg_style ); ?>">
 								<div class="left-content">
 									<svg xmlns="http://www.w3.org/2000/svg" width="34" height="28" viewBox="0 0 34 28" fill="none">
 										<path d="M0 18C0 23.88 3.48 27.12 7.44 27.12C11.04 27.12 13.8 24.24 13.8 20.76C13.8 17.16 11.4 14.64 8.04 14.64C7.44 14.64 6.6 14.76 6.48 14.76C6.84 10.92 10.32 6.12 14.16 3.6L9.72 0C4.2 3.96 0 10.68 0 18ZM19.2 18C19.2 23.88 22.68 27.12 26.64 27.12C30.24 27.12 33.12 24.24 33.12 20.76C33.12 17.16 30.6 14.64 27.24 14.64C26.64 14.64 25.8 14.76 25.68 14.76C26.16 10.92 29.52 6.12 33.36 3.6L28.92 0C23.4 3.96 19.2 10.68 19.2 18Z" fill="black"/>
@@ -648,11 +660,14 @@ final class Custom_Tabs_Plugin {
 
 				<?php if ( isset( $settings['gallery'] ) && is_array( $settings['gallery'] ) && ! empty( $settings['gallery'] ) ) : ?>
 					<div class="ctp__gallery">
-						<?php foreach ( $settings['gallery'] as $image_url ) : ?>
-							<div class="ctp__gallery-item">
-								<img src="<?php echo esc_url( $image_url ); ?>" alt="">
-							</div>
-						<?php endforeach; ?>
+						<div class="gallery-title"><?php esc_html_e( 'TRUSTED BY', 'custom-tabs-plugin' ); ?></div>
+						<div class="ctp__gallery-items">
+							<?php foreach ( $settings['gallery'] as $image_url ) : ?>
+								<div class="ctp__gallery-item">
+									<img src="<?php echo esc_url( $image_url ); ?>" alt="">
+								</div>
+							<?php endforeach; ?>
+						</div>
 					</div>
 				<?php endif; ?>
 			</div>
