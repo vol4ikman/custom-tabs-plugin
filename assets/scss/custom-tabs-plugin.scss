@@ -143,20 +143,22 @@
 		.ctp__cta {
 			background-color: #080E3F;
 			color: #FFF;
-			height: 168px;
+			min-height: 168px;
 			display: flex;
 			align-items: center;
-			padding-left: 40px;
-			width: calc(100% - 40px);
+			padding: 20px 24px;
+			width: 100%;
 			border-radius: 15px;
-			font-size: 32px;
-			line-height: 44px;
+			font-size: clamp(24px, 2.1vw, 32px);
+			line-height: 1.25;
 			font-weight: 700;
 			text-decoration: none;
 			position: relative;
+			box-sizing: border-box;
+			overflow-wrap: anywhere;
 
 			.text {
-				max-width: calc(100% - 80px);
+				max-width: calc(100% - 100px);
 			}
 
 			.arrow {
@@ -175,4 +177,206 @@
 	}
 }
 
-@media screen and (max-width: 1520px) {}
+@media screen and (max-width: 1520px) and (min-width: 1281px) {
+	.ctp {
+		&__inner {
+			max-width: 1240px;
+			padding: 0 20px;
+		}
+
+		&__tablist {
+			gap: 24px;
+			margin-bottom: 28px;
+		}
+
+		&__tab {
+			font-size: 26px;
+			line-height: 36px;
+
+
+			h3 {
+				font-size: 26px;
+				line-height: 36px;
+			}
+		}
+
+		.left-side {
+			width: 66%;
+			height: 460px;
+		}
+
+		.left-content {
+			padding: 30px 24px;
+			max-width: 417px;
+		}
+
+		.quote {
+			font-size: 22px;
+			line-height: 32px;
+		}
+
+		.user-metadata {
+			gap: 20px;
+		}
+
+		.right-side {
+			max-width: 32%;
+			width: 32%;
+
+			.percent-block {
+				height: 260px;
+				padding: 0 24px;
+				margin-bottom: 24px;
+
+				.percent {
+					font-size: 56px;
+					line-height: 58px;
+				}
+
+				.percent-description {
+					font-size: 20px;
+					line-height: 28px;
+				}
+			}
+
+			.ctp__cta {
+				min-height: 124px;
+				padding: 18px 20px;
+				width: 100%;
+				font-size: clamp(20px, 1.8vw, 26px);
+				line-height: 1.25;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.ctp {
+		&__inner {
+			padding: 0 16px;
+		}
+
+		&__tablist {
+			flex-wrap: wrap;
+			gap: 14px;
+			justify-content: flex-start;
+			margin-bottom: 20px;
+		}
+
+		&__tab {
+			font-size: 20px;
+			line-height: 30px;
+			margin-right: 24px;
+
+			h3 {
+				font-size: 20px;
+				line-height: 30px;
+				border-bottom-width: 2px;
+			}
+		}
+
+		.left-side,
+		.right-side {
+			float: none;
+			width: 100%;
+			max-width: 100%;
+		}
+
+		.left-side {
+			height: auto;
+			min-height: 360px;
+			margin-bottom: 20px;
+		}
+
+		.left-content {
+			padding: 20px;
+			max-width: 100%;
+		}
+
+		.quote {
+			font-size: 18px;
+			line-height: 28px;
+		}
+
+		.user-metadata {
+			gap: 14px;
+		}
+
+		.company {
+			margin-top: 20px;
+		}
+
+		.right-side {
+			.percent-block {
+				height: auto;
+				padding: 20px;
+				gap: 12px;
+				margin-bottom: 16px;
+
+				.percent {
+					font-size: 40px;
+					line-height: 42px;
+				}
+
+				.percent-description {
+					font-size: 18px;
+					line-height: 26px;
+				}
+			}
+
+			.ctp__cta {
+				min-height: 96px;
+				padding: 14px 16px;
+				width: 100%;
+				font-size: 20px;
+				line-height: 1.25;
+
+				.text {
+					max-width: calc(100% - 56px);
+				}
+
+				.arrow {
+					top: 16px;
+					right: 16px;
+				}
+			}
+		}
+
+		&__gallery {
+			flex-wrap: wrap;
+		}
+	}
+
+	.entry-content {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 786px) {
+	.ctp {
+		.right-side {
+			display: flex;
+			gap: 20px;
+			align-items: stretch;
+
+			.percent-block,
+			.ctp__cta {
+				width: 50%;
+				max-width: 50%;
+				margin-bottom: 0;
+			}
+
+			.percent-block {
+				padding: 16px;
+				height: 216px;
+			}
+
+			.ctp__cta {
+				height: 216px;
+				min-height: 216px;
+				padding: 16px;
+			}
+		}
+	}
+}

@@ -37,16 +37,31 @@ final class Custom_Tabs_Plugin {
 		);
 
 		wp_register_style(
+			'custom-tabs-plugin-slick',
+			'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
+			array(),
+			'1.8.1'
+		);
+
+		wp_register_style(
 			'custom-tabs-plugin-styles',
 			plugin_dir_url( __FILE__ ) . 'assets/css/custom-tabs-plugin.min.css',
-			array( 'custom-tabs-plugin-fonts' ),
+			array( 'custom-tabs-plugin-fonts', 'custom-tabs-plugin-slick' ),
 			$this->version
+		);
+
+		wp_register_script(
+			'custom-tabs-plugin-slick',
+			'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
+			array( 'jquery' ),
+			'1.8.1',
+			true
 		);
 
 		wp_register_script(
 			'custom-tabs-plugin-script',
 			plugin_dir_url( __FILE__ ) . 'assets/js/custom-tabs-plugin.js',
-			array(),
+			array( 'jquery', 'custom-tabs-plugin-slick' ),
 			$this->version,
 			true
 		);
@@ -527,8 +542,6 @@ final class Custom_Tabs_Plugin {
 		ob_start();
 		?>
 		<section class="ctp" id="<?php echo esc_attr( $instance_id ); ?>" data-ctp-tabs>
-			<div class="ctp__bg-shape ctp__bg-shape--left" aria-hidden="true"></div>
-			<div class="ctp__bg-shape ctp__bg-shape--right" aria-hidden="true"></div>
 
 			<div class="ctp__inner">
 
